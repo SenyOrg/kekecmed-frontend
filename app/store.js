@@ -8,6 +8,13 @@ import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
 
+/**
+ * Import additional middleware
+ */
+import logger from 'redux-logger';
+import promise from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
+
 const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState = {}, history) {
@@ -17,6 +24,9 @@ export default function configureStore(initialState = {}, history) {
   const middlewares = [
     sagaMiddleware,
     routerMiddleware(history),
+    logger(),
+    promise(),
+    thunk
   ];
 
   const enhancers = [
