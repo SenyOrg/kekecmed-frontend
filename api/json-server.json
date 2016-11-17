@@ -1,0 +1,18 @@
+{
+  "config": "./api/json-server.json",
+  "port": 3001,
+  "host": "0.0.0.0",
+  "watch": true,
+  "routes": "./api/routes.json",
+  "middlewares": [
+    "./api/middlewares/index.js"
+  ],
+  "read-only": false,
+  "no-cors": false,
+  "no-gzip": false,
+  "snapshots": "./api/snapshots",
+  "delay": 0,
+  "id": "id",
+  "quit": false,
+  "version": ""
+}

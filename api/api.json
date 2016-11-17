@@ -1,0 +1,14 @@
+{
+  "modules": [
+    {
+      "id": 1,
+      "title": "Patient",
+      "active": true
+    },
+    {
+      "id": 2,
+      "title": "Calendars",
+      "active": true
+    }
+  ]
+}
