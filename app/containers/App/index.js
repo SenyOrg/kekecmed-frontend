@@ -22,25 +22,42 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-function App(props) {
-  return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-        meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
-        ]}
-      />
-      <Header />
-      {React.Children.toArray(props.children)}
-      <Footer />
-    </AppWrapper>
-  );
+export default class App extends React.Component {
+  /**
+   * Attributes
+   */
+  protoTypes = {
+    children: React.PropTypes.node,
+  }
+
+  /**
+   * Constructor
+   *
+   * @param props
+   */
+  constructor(props) {
+    super(props);
+  }
+
+  /**
+   * Render Component
+   *
+   * @returns {XML}
+   */
+  render() {
+    return (
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - React.js Boilerplate"
+          defaultTitle="React.js Boilerplate"
+          meta={[
+            { name: 'description', content: 'A React.js Boilerplate application' },
+          ]}
+        />
+        <Header />
+        {React.Children.toArray(this.props.children)}
+        <Footer />
+      </AppWrapper>
+    );
+  }
 }
-
-App.propTypes = {
-  children: React.PropTypes.node,
-};
-
-export default App;
