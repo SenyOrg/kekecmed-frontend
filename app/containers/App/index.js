@@ -8,20 +8,20 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import boot from 'components/Layout/boot';
+import Wrapper from 'components/Layout/Wrapper';
+import Header from 'components/Layout/Header';
+import Sidebar from 'components/Layout/Sidebar';
+import ContentWrapper from 'components/Layout/ContentWrapper';
+import Footer from 'components/Layout/Footer';
+import ControlSidebar from 'components/Layout/ControlSidebar';
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
-
+/**
+ * App
+ *
+ * @author Selcuk Kekec <skekec@kekecmed.com>
+ */
 export default class App extends React.Component {
   /**
    * Attributes
@@ -40,24 +40,36 @@ export default class App extends React.Component {
   }
 
   /**
+   * Runs when component is mounted
+   */
+  componentDidMount() {
+    boot();
+  }
+
+  /**
    * Render Component
    *
    * @returns {XML}
    */
   render() {
     return (
-      <AppWrapper>
+      <Wrapper>
         <Helmet
-          titleTemplate="%s - React.js Boilerplate"
-          defaultTitle="React.js Boilerplate"
+          titleTemplate="%s - KekecMed"
+          defaultTitle="Welcome"
           meta={[
-            { name: 'description', content: 'A React.js Boilerplate application' },
+            { name: 'description', content: 'Welcome to KekecMED' },
           ]}
         />
-        <Header />
-        {React.Children.toArray(this.props.children)}
-        <Footer />
-      </AppWrapper>
+        <Header/>
+        <Sidebar location={this.props.location.pathname}/>
+        <ContentWrapper>
+          {React.Children.toArray(this.props.children)}
+        </ContentWrapper>
+        <Footer/>
+        <ControlSidebar />
+        <div className="control-sidebar-bg"></div>
+      </Wrapper>
     );
   }
 }
