@@ -19,6 +19,9 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  NAVIGATION_TOGGLE,
+  CONTROL_SIDEBAR_TOGGLE,
+  CONTROL_SIDEBAR_ACTIVATE_TAB
 } from './constants';
 
 /**
@@ -60,4 +63,41 @@ export function repoLoadingError(error) {
     type: LOAD_REPOS_ERROR,
     error,
   };
+}
+
+/**************************************************
+ *              VIEW related actions              *
+ **************************************************/
+
+/**
+ * Toggle navigation
+ *
+ * @returns {{type: string}}
+ */
+export function toggleNavigation() {
+  return {
+    type: NAVIGATION_TOGGLE
+  };
+}
+
+/**
+ * Toggle control sidebar
+ */
+export function toggleControlSidebar() {
+  return {
+    type: CONTROL_SIDEBAR_TOGGLE
+  }
+}
+
+/**
+ * Activate control sidebar tab
+ *
+ * @param tabName
+ * @returns {{type, payload: *}}
+ */
+export function activateControlSidebarTab(tabName) {
+  return {
+    type: CONTROL_SIDEBAR_ACTIVATE_TAB,
+    payload: tabName
+  }
 }

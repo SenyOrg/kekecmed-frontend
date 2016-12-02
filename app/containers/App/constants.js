@@ -13,3 +13,11 @@ export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
 export const DEFAULT_LOCALE = 'en';
+
+/**
+ * VIEW related action constants
+ * @type {string}
+ */
+export const NAVIGATION_TOGGLE = 'view/navigation/collapse';
+export const CONTROL_SIDEBAR_TOGGLE = 'view/controlsidebar/collapse';
+export const CONTROL_SIDEBAR_ACTIVATE_TAB = 'view/controlsidebar/activatetab';

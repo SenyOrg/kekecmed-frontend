@@ -8,7 +8,10 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectGlobal } from './selectors';
+import { toggleNavigation, toggleControlSidebar, activateControlSidebarTab } from './actions';
 import boot from 'components/Layout/boot';
 import Wrapper from 'components/Layout/Wrapper';
 import Header from 'components/Layout/Header';
@@ -22,7 +25,7 @@ import ControlSidebar from 'components/Layout/ControlSidebar';
  *
  * @author Selcuk Kekec <skekec@kekecmed.com>
  */
-export default class App extends React.Component {
+class App extends React.Component {
   /**
    * Attributes
    */
@@ -61,15 +64,33 @@ export default class App extends React.Component {
             { name: 'description', content: 'Welcome to KekecMED' },
           ]}
         />
-        <Header/>
-        <Sidebar location={this.props.location.pathname}/>
+        <Header toggleNavigation={this.props.toggleNavigation} toggleControlSidebar={this.props.toggleControlSidebar}/>
+        <Sidebar location={this.props.location.pathname} view={this.props.global.toJS().view}/>
         <ContentWrapper>
           {React.Children.toArray(this.props.children)}
         </ContentWrapper>
         <Footer/>
-        <ControlSidebar />
+        <ControlSidebar view={this.props.global.toJS().view} activateTab={this.props.activateControlSidebarTab}/>
         <div className="control-sidebar-bg"></div>
       </Wrapper>
     );
   }
 }
+
+
+/**
+ * Connect to store
+ */
+const mapStateToProps = createStructuredSelector({
+  global: selectGlobal()
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    toggleNavigation: (evt) => dispatch(toggleNavigation()),
+    toggleControlSidebar: (evt) => dispatch(toggleControlSidebar()),
+    activateControlSidebarTab: (tabName) => dispatch(activateControlSidebarTab(tabName))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

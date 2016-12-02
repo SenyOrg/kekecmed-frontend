@@ -1,4 +1,5 @@
 import React from 'react';
+import TP from 'admin-lte/dist/img/avatar.png';
 
 /**
  * Header
@@ -34,7 +35,7 @@ class Header extends React.Component {
         {/* Header Navbar: style can be found in header.less */}
         <nav className="navbar navbar-static-top">
           {/* Sidebar toggle button*/}
-          <a href="javascript:void(0)" className="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <a href="javascript:void(0)" className="sidebar-toggle" onClick={this.props.toggleNavigation}>
             <span className="sr-only">Toggle navigation</span>
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
@@ -57,7 +58,7 @@ class Header extends React.Component {
                       <li>{/* start message */}
                         <a href="#">
                           <div className="pull-left">
-                            <img src="../../dist/img/user2-160x160.jpg" className="img-circle" alt="User Image" />
+                            <img src={TP} className="img-circle" alt="User Image" />
                           </div>
                           <h4>
                             Support Team
@@ -128,13 +129,13 @@ class Header extends React.Component {
               {/* User Account: style can be found in dropdown.less */}
               <li className="dropdown user user-menu">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                  <img src="../../dist/img/user2-160x160.jpg" className="user-image" alt="User Image" />
+                  <img src={TP} className="user-image" alt="User Image" />
                     <span className="hidden-xs">Alexander Pierce</span>
                 </a>
                 <ul className="dropdown-menu">
                   {/* User image */}
                   <li className="user-header">
-                    <img src="../../dist/img/user2-160x160.jpg" className="img-circle" alt="User Image" />
+                    <img src={TP} className="img-circle" alt="User Image" />
 
                       <p>
                         Alexander Pierce - Web Developer
@@ -169,7 +170,7 @@ class Header extends React.Component {
               </li>
               {/* Control Sidebar Toggle Button */}
               <li>
-                <a href="javascript:void(0)" data-toggle="control-sidebar"><i className="fa fa-gears"></i></a>
+                <a onClick={this.props.toggleControlSidebar}><i className="fa fa-gears"></i></a>
               </li>
             </ul>
           </div>

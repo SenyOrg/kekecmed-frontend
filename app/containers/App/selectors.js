@@ -42,6 +42,11 @@ const selectLocationState = () => {
   };
 };
 
+const selectView = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.get('view')
+);
+
 export {
   selectGlobal,
   selectCurrentUser,
@@ -49,4 +54,5 @@ export {
   selectError,
   selectRepos,
   selectLocationState,
+  selectView
 };

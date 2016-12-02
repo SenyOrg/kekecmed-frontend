@@ -65,5 +65,14 @@ export default function configureStore(initialState = {}, history) {
     });
   }
 
+  /**
+   * Sync store into localStorage
+   *
+   * @todo Transform this into a saga
+   */
+  store.subscribe(() => {
+    localStorage.setItem('reduxState', JSON.stringify(store.getState().get('global').get('view')))
+  })
+
   return store;
 }

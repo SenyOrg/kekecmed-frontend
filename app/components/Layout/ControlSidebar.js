@@ -17,6 +17,42 @@ class ControlSidebar extends React.Component {
   }
 
   /**
+   * Handle control sidebar state open/collapsed
+   */
+  handleSidebarState() {
+    if (this.props.view.controlSidebar.collapsed) {
+      $.AdminLTE.controlSidebar.close();
+    } else {
+      $.AdminLTE.controlSidebar.open();
+    }
+  }
+
+  /**
+   * Handle active tab
+   */
+  handleActiveTab() {
+    if (this.props.view.controlSidebar.activeTab) {
+      $('a[href="'+this.props.view.controlSidebar.activeTab+'"]').click()
+    }
+  }
+
+  /**
+   * Runs when component mounts
+   */
+  componentDidMount() {
+    this.handleSidebarState();
+    this.handleActiveTab();
+  }
+
+  /**
+   * Runs when component updates
+   */
+  componentDidUpdate() {
+    this.handleSidebarState();
+    this.handleActiveTab();
+  }
+
+  /**
    * Render
    *
    * @return {XML}
@@ -27,9 +63,8 @@ class ControlSidebar extends React.Component {
         {/* Control Sidebar */}
         {/* Create the tabs */}
         <ul className="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i className="fa fa-home"></i></a></li>
-
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i className="fa fa-gears"></i></a></li>
+          <li><a href="#control-sidebar-home-tab" data-toggle="tab" onClick={(y) => {this.props.activateTab(y.target.href)}}><i className="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab" onClick={(y) => {this.props.activateTab(y.target.href)}}><i className="fa fa-gears"></i></a></li>
         </ul>
         {/* Tab panes */}
         <div className="tab-content">

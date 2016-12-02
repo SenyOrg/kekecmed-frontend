@@ -14,11 +14,25 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
+  NAVIGATION_TOGGLE,
+  CONTROL_SIDEBAR_TOGGLE,
+  CONTROL_SIDEBAR_ACTIVATE_TAB
 } from './constants';
 import { fromJS } from 'immutable';
 
+const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {
+  navigation: {
+    collapsed: false
+  },
+  controlSidebar: {
+    collapsed: false,
+    activeTab: false
+  }
+};
+
 // The initial state of the App
 const initialState = fromJS({
+  view: persistedState,
   loading: false,
   error: false,
   currentUser: false,
@@ -43,6 +57,12 @@ function appReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case NAVIGATION_TOGGLE:
+      return state.setIn(['view', 'navigation', 'collapsed'], !state.getIn(['view', 'navigation', 'collapsed']));
+    case CONTROL_SIDEBAR_TOGGLE:
+      return state.setIn(['view', 'controlSidebar', 'collapsed'], !state.getIn(['view', 'controlSidebar', 'collapsed']));
+    case CONTROL_SIDEBAR_ACTIVATE_TAB:
+      return state.setIn(['view', 'controlSidebar', 'activeTab'], '#' + action.payload.split('#')[1]);
     default:
       return state;
   }

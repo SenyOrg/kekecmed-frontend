@@ -1,5 +1,6 @@
 import React from 'react';
 import Navigation from './Navigation';
+import TP from 'admin-lte/dist/img/avatar.png';
 
 /**
  * Sidebar
@@ -13,6 +14,31 @@ class Sidebar extends React.Component {
    */
   constructor(props) {
     super(props);
+  }
+
+  /**
+   * Handle navigation state collapsed/visible
+   */
+  handleNavigationState() {
+    if (this.props.view.navigation.collapsed) {
+      $("body").addClass('sidebar-collapse').trigger('expanded.pushMenu');
+    } else {
+      $("body").removeClass('sidebar-collapse').trigger('expanded.pushMenu');
+    }
+  }
+
+  /**
+   * Runs when component mounts first time
+   */
+  componentDidMount() {
+    this.handleNavigationState();
+  }
+
+  /**
+   * Runs when component component updates
+   */
+  componentDidUpdate() {
+    this.handleNavigationState();
   }
 
   /**
@@ -49,7 +75,7 @@ class Sidebar extends React.Component {
           {/* Sidebar user panel */}
           <div className="user-panel">
             <div className="pull-left image">
-              <img src="../../dist/img/user2-160x160.jpg" className="img-circle" alt="User Image" />
+              <img src={TP} className="img-circle" alt="User Image" />
             </div>
             <div className="pull-left info">
               <p>Alexander Pierce</p>
