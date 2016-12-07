@@ -11,23 +11,35 @@
  */
 
 import {
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS,
-  LOAD_REPOS_ERROR,
   NAVIGATION_TOGGLE,
+  NAVIGATION_STATE,
   CONTROL_SIDEBAR_TOGGLE,
-  CONTROL_SIDEBAR_ACTIVATE_TAB
+  CONTROL_SIDEBAR_ACTIVATE_TAB,
+  UPDATE_BREADCRUMB,
+  UPDATE_HEADER,
+  UPDATE_PAGE_HEADER,
+  UPDATE_PAGE_SUB_HEADER,
+  LOADING_INDICATOR
 } from './constants';
 import { fromJS } from 'immutable';
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {
+/**
+ * Get state from localStorage or create a new one
+ *
+ * @type {{navigation: {collapsed: boolean}, controlSidebar: {collapsed: boolean, activeTab: boolean}, pageHeader: null, pageSubHeader: null, breadCrumb: Array, loadingIndicator: boolean}}
+ */
+const persistedState = localStorage.getItem('kekecmed') ? JSON.parse(localStorage.getItem('kekecmed')) : {
   navigation: {
     collapsed: false
   },
   controlSidebar: {
     collapsed: false,
     activeTab: false
-  }
+  },
+  pageHeader: null,
+  pageSubHeader: null,
+  breadCrumb: [],
+  loadingIndicator: false
 };
 
 // The initial state of the App
@@ -41,28 +53,34 @@ const initialState = fromJS({
   },
 });
 
+/**
+ * App Reducer
+ *
+ * @author Selcuk Kekec <skekec@kekecmed.com>
+ * @param state
+ * @param action
+ * @returns {*}
+ */
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_REPOS:
-      return state
-        .set('loading', true)
-        .set('error', false)
-        .setIn(['userData', 'repositories'], false);
-    case LOAD_REPOS_SUCCESS:
-      return state
-        .setIn(['userData', 'repositories'], action.repos)
-        .set('loading', false)
-        .set('currentUser', action.username);
-    case LOAD_REPOS_ERROR:
-      return state
-        .set('error', action.error)
-        .set('loading', false);
+    case NAVIGATION_STATE:
+      return state.setIn(['view', 'navigation', 'collapsed'], action.payload);
     case NAVIGATION_TOGGLE:
       return state.setIn(['view', 'navigation', 'collapsed'], !state.getIn(['view', 'navigation', 'collapsed']));
     case CONTROL_SIDEBAR_TOGGLE:
       return state.setIn(['view', 'controlSidebar', 'collapsed'], !state.getIn(['view', 'controlSidebar', 'collapsed']));
     case CONTROL_SIDEBAR_ACTIVATE_TAB:
       return state.setIn(['view', 'controlSidebar', 'activeTab'], '#' + action.payload.split('#')[1]);
+    case UPDATE_BREADCRUMB:
+      return state.setIn(['view', 'breadCrumb'], action.payload);
+    case UPDATE_HEADER:
+      return state.setIn(['view', 'pageHeader'], action.payload.header).setIn(['view', 'pageSubHeader'], action.payload.subHeader);
+    case UPDATE_PAGE_HEADER:
+      return state.setIn(['view', 'pageHeader'], action.payload);
+    case UPDATE_PAGE_SUB_HEADER:
+      return state.setIn(['view', 'pageSubHeader'], action.payload);
+    case LOADING_INDICATOR:
+      return state.setIn(['view', 'loadingIndicator'], action.payload);
     default:
       return state;
   }

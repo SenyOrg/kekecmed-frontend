@@ -25,29 +25,13 @@ class ContentWrapper extends React.Component {
    * @return {XML}
    */
   render() {
-    let breadCrumpData = [
-      {
-        title: 'Test',
-        active: false,
-        icon: 'dashboard'
-      },
-      {
-        title: 'Test2',
-        active: false
-      },
-      {
-        title: 'Test3',
-        active: true
-      }
-    ];
-
     return (
            <div className="content-wrapper"> {/* Content Wrapper. Contains page content */}
              {/* Content Header (Page header) */}
              <section className="content-header">
-               <ContentHeader header="Test" smallHeader="Test"/>
+               <ContentHeader header={this.props.view.pageHeader} smallHeader={this.props.view.pageSubHeader} />
                <BreadCrumb>
-                 {breadCrumpData.map((e, i) => {return <Crumb key={i} title={e.title} icon={e.icon} active={e.active} />})}
+                 {this.props.view.breadCrumb.map((e, i) => {return <Crumb key={i} title={e.title} icon={e.icon} active={e.active} />})}
                </BreadCrumb>
              </section>
 

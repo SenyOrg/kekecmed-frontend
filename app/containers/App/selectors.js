@@ -1,5 +1,7 @@
 /**
- * The global state selectors
+ * App: Selectors
+ *
+ * @author Selcuk Kekec <skekec@kekecmed.com>
  */
 
 import { createSelector } from 'reselect';

@@ -15,55 +15,28 @@
  *    }
  */
 
+/**
+ * App Actions
+ *
+ * @author Selcuk Kekec <skekec@kekecmed.com>
+ */
+
+/**
+ * IMPORTS
+ */
 import {
-  LOAD_REPOS,
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR,
+  NAVIGATION_STATE,
   NAVIGATION_TOGGLE,
   CONTROL_SIDEBAR_TOGGLE,
-  CONTROL_SIDEBAR_ACTIVATE_TAB
+  CONTROL_SIDEBAR_ACTIVATE_TAB,
+  UPDATE_BREADCRUMB,
+  UPDATE_PAGE_HEADER,
+  UPDATE_PAGE_SUB_HEADER,
+  UPDATE_HEADER,
+  LOADING_INDICATOR,
+  ERROR_INDICATOR
 } from './constants';
 
-/**
- * Load the repositories, this action starts the request saga
- *
- * @return {object} An action object with a type of LOAD_REPOS
- */
-export function loadRepos() {
-  return {
-    type: LOAD_REPOS,
-  };
-}
-
-/**
- * Dispatched when the repositories are loaded by the request saga
- *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
- *
- * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
- */
-export function reposLoaded(repos, username) {
-  return {
-    type: LOAD_REPOS_SUCCESS,
-    repos,
-    username,
-  };
-}
-
-/**
- * Dispatched when loading the repositories fails
- *
- * @param  {object} error The error
- *
- * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
- */
-export function repoLoadingError(error) {
-  return {
-    type: LOAD_REPOS_ERROR,
-    error,
-  };
-}
 
 /**************************************************
  *              VIEW related actions              *
@@ -99,5 +72,137 @@ export function activateControlSidebarTab(tabName) {
   return {
     type: CONTROL_SIDEBAR_ACTIVATE_TAB,
     payload: tabName
+  }
+}
+
+/**
+ * Update the breadcrumb navigation
+ *
+ * @param breadCrumb
+ * @returns {{type, payload: *}}
+ */
+export function updateBreadCrumb(breadCrumb) {
+  return {
+    type: UPDATE_BREADCRUMB,
+    payload: breadCrumb
+  }
+}
+
+/**
+ * Update page header
+ *
+ * @param pageHeader
+ * @returns {{type, payload: *}}
+ */
+export function updatePageHeader(pageHeader) {
+  return {
+    type: UPDATE_PAGE_HEADER,
+    payload: pageHeader
+  }
+}
+
+/**
+ * Update page's subheader
+ *
+ * @param pageSubHeader
+ * @returns {{type, payload: *}}
+ */
+export function updatePageSubHeader(pageSubHeader) {
+  return {
+    type: UPDATE_PAGE_SUB_HEADER,
+    payload: pageSubHeader
+  }
+}
+
+/**
+ * Update page and sub header in one action
+ *
+ * @param header
+ * @param subHeader
+ * @returns {{type, payload: {header: *, subHeader: *}}}
+ */
+export function updateHeader(header, subHeader) {
+  return {
+    type: UPDATE_HEADER,
+    payload: {
+      header: header,
+      subHeader: subHeader
+    }
+  }
+}
+
+/**
+ * Set navigation state to open or collapsed
+ *
+ * @param state
+ * @returns {{type: string, payload: *}}
+ */
+export function setNavigationState(state) {
+  return {
+    type: NAVIGATION_STATE,
+    payload: state
+  }
+}
+
+/**
+ * Make navigation totally visible
+ *
+ * @returns {{type, payload}|{type: string, payload: *}}
+ */
+export function openNavigation() {
+  return setNavigationState(false);
+}
+
+/**
+ * Make navigation collapsed
+ *
+ * @returns {{type, payload}|{type: string, payload: *}}
+ */
+export function closeNavigation() {
+  return setNavigationState(true);
+}
+
+/**
+ * Set state of loading indicator
+ *
+ * @param state
+ * @returns {{type, payload: *}}
+ */
+export function setLoadingIndicatorState(state) {
+  return {
+    type: LOADING_INDICATOR,
+    payload: state
+  }
+}
+
+/**
+ * Show loading indicator
+ *
+ * @returns {{type, payload}|{type, payload: *}}
+ */
+export function showLoadingIndicator() {
+  return setLoadingIndicatorState(true);
+}
+
+/**
+ * Hide loading indicator
+ *
+ * @returns {{type, payload}|{type, payload: *}}
+ */
+export function hideLoadingIndicator() {
+  return setLoadingIndicatorState(false);
+}
+
+/**
+ * Show error indicator with
+ * an descriptive text
+ *
+ * @param error
+ * @returns {{type, payload: *}}
+ */
+export function error(error) {
+  return {
+    type: ERROR_INDICATOR,
+    payload: error
   }
 }

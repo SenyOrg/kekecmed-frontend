@@ -28,9 +28,17 @@ class Header extends React.Component {
         {/* Logo */}
         <a href="../../index2.html" className="logo">
           {/* mini logo for sidebar mini 50x50 pixels */}
-          <span className="logo-mini"><b>K</b>M</span>
+          <span className="logo-mini">
+            {this.props.view.loadingIndicator ?
+            <i className="fa fa-refresh fa-spin"></i> :
+              <i className="fa fa-heartbeat"></i> } {/* <b>K</b>M */}
+          </span>
           {/* logo for regular state and mobile devices */}
-          <span className="logo-lg"><b>Kekec</b>MED</span>
+          <span className="logo-lg">
+            {this.props.view.loadingIndicator ?
+              <i className="fa fa-refresh fa-spin"></i> :
+              <i className="fa fa-heartbeat"></i> } <b>Kekec</b>MED
+          </span>
         </a>
         {/* Header Navbar: style can be found in header.less */}
         <nav className="navbar navbar-static-top">

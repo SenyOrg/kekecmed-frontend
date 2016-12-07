@@ -6,6 +6,9 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
+/**
+ * IMPORTS
+ */
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
@@ -64,9 +67,9 @@ class App extends React.Component {
             { name: 'description', content: 'Welcome to KekecMED' },
           ]}
         />
-        <Header toggleNavigation={this.props.toggleNavigation} toggleControlSidebar={this.props.toggleControlSidebar}/>
+        <Header toggleNavigation={this.props.toggleNavigation} toggleControlSidebar={this.props.toggleControlSidebar} view={this.props.global.toJS().view} />
         <Sidebar location={this.props.location.pathname} view={this.props.global.toJS().view}/>
-        <ContentWrapper>
+        <ContentWrapper view={this.props.global.toJS().view}>
           {React.Children.toArray(this.props.children)}
         </ContentWrapper>
         <Footer/>
