@@ -12,7 +12,6 @@ import createReducer from './reducers';
  * Import additional middleware
  */
 import logger from 'redux-logger';
-import promise from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -25,7 +24,6 @@ export default function configureStore(initialState = {}, history) {
     sagaMiddleware,
     routerMiddleware(history),
     logger(),
-    promise(),
     thunk
   ];
 
@@ -71,7 +69,7 @@ export default function configureStore(initialState = {}, history) {
    * @todo Transform this into a saga
    */
   store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState().get('global').get('view')))
+    localStorage.setItem('kekecmed', JSON.stringify(store.getState().get('global').get('view')))
   })
 
   return store;
