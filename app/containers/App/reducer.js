@@ -1,5 +1,5 @@
-/*
- * AppReducer
+/**
+ * App Reducer
  *
  * The reducer takes care of our data. Using actions, we can change our
  * application state.
@@ -8,8 +8,13 @@
  * Example:
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
+ *
+ * @author Selcuk Kekec <skekec@kekecmed.com>
  */
 
+/**
+ * IMPORTS
+ */
 import {
   NAVIGATION_TOGGLE,
   NAVIGATION_STATE,
@@ -33,7 +38,7 @@ const persistedState = localStorage.getItem('kekecmed') ? JSON.parse(localStorag
     collapsed: false
   },
   controlSidebar: {
-    collapsed: false,
+    collapsed: true,
     activeTab: false
   },
   pageHeader: null,

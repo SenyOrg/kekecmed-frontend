@@ -1,4 +1,4 @@
-/*
+/**
  * App Actions
  *
  * Actions change things in your application
@@ -13,10 +13,6 @@
  *    export function yourAction(var) {
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
- */
-
-/**
- * App Actions
  *
  * @author Selcuk Kekec <skekec@kekecmed.com>
  */

@@ -1,9 +1,22 @@
 /**
- * App: Selectors
+ * App Selectors
+ *
+ * This file includes memoized state selectors which performs much better
+ * then default state accessors. You can create selectors for each purpose.
+ * Long traversals should be avoided:
+ *
+ *      selectGlobal().get('a').get('b').get('c'); --> WRONG - Create a selector instead !!!
+ *
+ * For more information about selectors please have a look into the reselect documentation:
+ *
+ *        <https://github.com/reactjs/reselect>
  *
  * @author Selcuk Kekec <skekec@kekecmed.com>
  */
 
+/**
+ * IMPORTS
+ */
 import { createSelector } from 'reselect';
 
 const selectGlobal = () => (state) => state.get('global');
