@@ -7,6 +7,10 @@
  * @author Selcuk Kekec <skekec@kekecmed.com>
  */
 
+/**************************************************
+ *                    LAYOUT                      *
+ **************************************************/
+
 // Import CSS
 import 'admin-lte/bootstrap/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -21,3 +25,9 @@ import 'script-loader!admin-lte/plugins/slimScroll/jquery.slimscroll.min.js';
 import 'script-loader!admin-lte/plugins/fastclick/fastclick.js';
 import 'script-loader!admin-lte/dist/js/app.min.js';
 import 'script-loader!admin-lte/dist/js/demo.js';
+
+/**************************************************
+ *                   AG-GRID                      *
+ **************************************************/
+import 'ag-grid/dist/styles/ag-grid.css';
+import 'ag-grid/dist/styles/theme-fresh.css';
