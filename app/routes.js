@@ -16,21 +16,65 @@ export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
+//  return [
+//    {
+//      path: '/',
+//      name: 'home',
+//      getComponent(nextState, cb) {
+//        const importModules = Promise.all([
+//          System.import('containers/HomePage/reducer'),
+//          System.import('containers/HomePage/sagas'),
+//          System.import('containers/HomePage'),
+//        ]);
+//
+//        const renderRoute = loadModule(cb);
+//
+//        importModules.then(([reducer, sagas, component]) => {
+//          injectReducer('home', reducer.default);
+//          injectSagas(sagas.default);
+//
+//          renderRoute(component);
+//        });
+//
+//        importModules.catch(errorLoading);
+//      },
+//    }, {
+//      path: '/features',
+//      name: 'features',
+//      getComponent(nextState, cb) {
+//        System.import('containers/FeaturePage')
+//          .then(loadModule(cb))
+//          .catch(errorLoading);
+//      },
+//    }, {
+//      path: '*',
+//      name: 'notfound',
+//      getComponent(nextState, cb) {
+//        System.import('containers/NotFoundPage')
+//          .then(loadModule(cb))
+//          .catch(errorLoading);
+//      },
+//    },
+//  ];
+
   return [
+    /**
+     * Dashboard: INDEX
+     */
     {
       path: '/',
-      name: 'home',
+      name: 'dashboard',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/HomePage/reducer'),
-          System.import('containers/HomePage/sagas'),
-          System.import('containers/HomePage'),
+          System.import('containers/Dashboard/state/reducer'),
+          System.import('containers/Dashboard/state/sagas'),
+          System.import('containers/Dashboard'),
         ]);
 
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, sagas, component]) => {
-          injectReducer('home', reducer.default);
+          injectReducer('dashboard', reducer.default);
           injectSagas(sagas.default);
 
           renderRoute(component);
@@ -38,15 +82,116 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-    }, {
-      path: '/features',
-      name: 'features',
+    },
+
+    /**
+     * Patient: INDEX
+     */
+    {
+      path: '/patient',
+      name: 'patientIndex',
       getComponent(nextState, cb) {
-        System.import('containers/FeaturePage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
+        const importModules = Promise.all([
+          System.import('containers/Patient/Index/state/reducer'),
+          System.import('containers/Patient/Index/state/sagas'),
+          System.import('containers/Patient/Index'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('patientIndex', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
       },
-    }, {
+    },
+
+    /**
+     * Patient: VIEW
+     */
+    {
+      path: '/patient/:id',
+      name: 'patientView',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Patient/View/state/reducer'),
+          System.import('containers/Patient/View/state/sagas'),
+          System.import('containers/Patient/View'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('patientView', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+
+    /**
+     * Patient: EDIT
+     */
+    {
+      path: '/patient/manipulation/:id',
+      name: 'patientEdit',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Patient/Manipulation/state/reducer'),
+          System.import('containers/Patient/Manipulation/state/sagas'),
+          System.import('containers/Patient/Manipulation'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('patientEdit', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+
+    /**
+     * Patient: EDIT
+     */
+    {
+      path: '/patient/create',
+      name: 'patientCreate',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/Patient/Manipulation/state/reducer'),
+          System.import('containers/Patient/Manipulation/state/sagas'),
+          System.import('containers/Patient/Manipulation'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('patientCreate', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+
+    /**
+     * Not Found
+     */
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
@@ -55,5 +200,5 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     },
-  ];
+  ]
 }
