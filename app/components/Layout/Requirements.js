@@ -30,4 +30,4 @@ import 'script-loader!admin-lte/dist/js/demo.js';
  *                   AG-GRID                      *
  **************************************************/
 import 'ag-grid/dist/styles/ag-grid.css';
-import 'ag-grid/dist/styles/theme-fresh.css';
+import 'style!css!./ag-grid-theme.css';
