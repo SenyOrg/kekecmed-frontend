@@ -5,6 +5,7 @@ import React from 'react';
 import {AgGridReact} from 'ag-grid-react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+//noinspection JSUnresolvedVariable
 import { createStructuredSelector } from 'reselect';
 import { saveTableState, fetchPatients, deletePatients } from '../state/actions';
 import { selectTable, selectPatientList, selectFetchedState } from '../state/selectors';
@@ -195,7 +196,7 @@ class Table extends React.Component {
  * Map dispatch to props
  *
  * @param dispatch
- * @returns {{refresh: (function(*): *)}}
+ * @returns {{saveTableState: (function(*=): *), onSelectionDelete: (function(*)), onRefresh: (function()), onDelete: (function(*): *), onOpenPatient: (function(*))}}
  */
 export function mapDispatchToProps(dispatch) {
   return {
