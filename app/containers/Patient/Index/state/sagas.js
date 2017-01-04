@@ -30,7 +30,7 @@ export function* fetchPatients() {
     yield [put(fetchPatientsPending()), put(showLoadingIndicator())];
 
     // Fetch patients
-    const data = yield call(() => axios.get('http://localhost:3001/patients'));
+    const data = yield call(() => axios.get('http://localhost:3010/v1/patient?relations=false'));
 
     // Fulfill fetch process and hide loading indicator
     yield [put(fetchPatientsFulfilled(data)), put(hideLoadingIndicator())];
@@ -63,7 +63,7 @@ export function* deletePatients(action) {
     // Delete all specified patients
     for (var i in action.payload) {
       try {
-        yield call(() => axios.delete('http://localhost:3001/patients/' + action.payload[i]));
+        yield call(() => axios.delete('http://localhost:3010/v1/patient/' + action.payload[i]));
       } catch (err) {
         console.log("Unable to delete patient", err);
       }

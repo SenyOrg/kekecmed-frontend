@@ -12,7 +12,8 @@ export default class ColumnDefinitions {
   /**
    * Selection Column
    *
-   * @returns {{headerName: string, width: number, checkboxSelection: boolean, suppressSorting: boolean, suppressMenu: boolean, pinned: boolean}}
+   * @returns {{headerName: string, width: number, checkboxSelection: boolean, suppressSorting: boolean, suppressMenu:
+   *     boolean, pinned: boolean}}
    */
   getSelection() {
     return {
@@ -28,7 +29,8 @@ export default class ColumnDefinitions {
   /**
    * ID Column
    *
-   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number, pinned: boolean, editable: boolean, cellEditorFramework: *}}
+   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number,
+   *     pinned: boolean, editable: boolean, cellEditorFramework: *}}
    */
   getId() {
     return {
@@ -42,12 +44,13 @@ export default class ColumnDefinitions {
   /**
    * Firstname Column
    *
-   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number, pinned: boolean, editable: boolean, cellEditorFramework: *}}
+   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number,
+   *     pinned: boolean, editable: boolean, cellEditorFramework: *}}
    */
   getFirstname() {
     return {
       headerName: "Firstname",
-      field: "firstname",
+      field: "firstName",
       pinned: true,
     };
   }
@@ -55,12 +58,13 @@ export default class ColumnDefinitions {
   /**
    * Lastname Column
    *
-   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number, pinned: boolean, editable: boolean, cellEditorFramework: *}}
+   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number,
+   *     pinned: boolean, editable: boolean, cellEditorFramework: *}}
    */
   getLastname() {
     return {
       headerName: "Lastname",
-      field: "lastname",
+      field: "lastName",
       pinned: true,
     };
   }
@@ -68,7 +72,7 @@ export default class ColumnDefinitions {
   getAge() {
     return {
       headerName: "Age",
-      field: "birthdate",
+      field: "birthDate",
       pinned: true,
       cellRenderer: ageRenderer
     };
@@ -77,11 +81,12 @@ export default class ColumnDefinitions {
   /**
    * Email Column
    *
-   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number, pinned: boolean, editable: boolean, cellEditorFramework: *}}
+   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number,
+   *     pinned: boolean, editable: boolean, cellEditorFramework: *}}
    */
   getEmail() {
     return {
-      headerName: "E-Mail",
+      headerName: "<i class='fa fa-envelope'></i> E-Mail",
       field: "email",
       pinned: true,
     }
@@ -90,7 +95,8 @@ export default class ColumnDefinitions {
   /**
    * Gender Column
    *
-   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number, pinned: boolean, editable: boolean, cellEditorFramework: *}}
+   * @returns {{headerName: string, field: string, enableRowGroup: boolean, enablePivot: boolean, width: number,
+   *     pinned: boolean, editable: boolean, cellEditorFramework: *}}
    */
   getGender() {
     return {
@@ -116,7 +122,7 @@ export default class ColumnDefinitions {
 
   getPhone() {
     return {
-      headerName: "Phone",
+      headerName: "<i class='fa fa-phone'></i> Phone",
       field: "phone",
       pinned: true
     }
@@ -124,7 +130,7 @@ export default class ColumnDefinitions {
 
   getMobile() {
     return {
-      headerName: "Mobile",
+      headerName: "<i class='fa fa-mobile'></i> Mobile",
       field: "mobile",
       pinned: true
     }
@@ -133,7 +139,7 @@ export default class ColumnDefinitions {
   getInsurance() {
     return {
       headerName: "Insurance",
-      field: "insurance_no",
+      field: "insuranceUUID",
       pinned: true
     }
   }

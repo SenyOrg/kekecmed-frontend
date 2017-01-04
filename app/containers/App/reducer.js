@@ -31,7 +31,8 @@ import { fromJS } from 'immutable';
 /**
  * Get state from localStorage or create a new one
  *
- * @type {{navigation: {collapsed: boolean}, controlSidebar: {collapsed: boolean, activeTab: boolean}, pageHeader: null, pageSubHeader: null, breadCrumb: Array, loadingIndicator: boolean}}
+ * @type {{navigation: {collapsed: boolean}, controlSidebar: {collapsed: boolean, activeTab: boolean}, pageHeader:
+ *     null, pageSubHeader: null, breadCrumb: Array, loadingIndicator: boolean}}
  */
 const persistedState = localStorage.getItem('kekecmed') ? JSON.parse(localStorage.getItem('kekecmed')) : {
   navigation: {
@@ -52,10 +53,26 @@ const initialState = fromJS({
   view: persistedState,
   loading: false,
   error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
-  },
+  user: {
+    /**
+     * @todo: Replace this when user authentication is ready
+     */
+    id: 1,
+    firstName: "Leandro",
+    lastName: "Frahmeke",
+    birthDate: "2004-11-01T16:33:16.000Z",
+    gender: "m",
+    street: "030 Katrin Loop",
+    no: "Mews",
+    zipCode: null,
+    city: "Alt Edwinburg",
+    mobile: "(0637) 836127849",
+    phone: "+49-5429-17629379",
+    email: "Juan94@gmail.com",
+    image: "https://s3.amazonaws.com/uifaces/faces/twitter/tgerken/128.jpg",
+    createdAt: "2017-01-02T19:50:39.000Z",
+    updatedAt: "2017-01-02T19:50:39.000Z"
+  }
 });
 
 /**

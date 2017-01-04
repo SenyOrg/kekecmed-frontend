@@ -49,6 +49,13 @@ const selectPatient = () => createSelector(
 );
 
 /**
+ * PATIENTS: state.patientList.data.list
+ */
+const selectPatientNotes = () => createSelector(selectData(), (dataState) => dataState.getIn(['notes', 'data']));
+
+const selectPatientTasks = () => createSelector(selectData(), (dataState) => dataState.getIn(['tasks', 'data']));
+
+/**
  * LOADING: state.patientList.data.loading
  */
 const selectLoadingState = () => createSelector(
@@ -72,6 +79,5 @@ export {
   selectView,
   selectPatient,
   selectLoadingState,
-  selectFetchedState,
-  selectErrorState
+  selectFetchedState, selectErrorState, selectPatientNotes, selectPatientTasks
 };

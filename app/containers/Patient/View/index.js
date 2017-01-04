@@ -4,8 +4,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
-import {fetchPatient} from './state/actions';
-import {selectPatient, selectFetchedState} from './state/selectors';
+import {fetchPatient, createNote} from './state/actions';
+import {selectPatient, selectFetchedState, selectPatientNotes, selectPatientTasks} from './state/selectors';
+import {selectUser} from '../../App/selectors';
+import Note from '../../../components/Notes';
+import Tasks from '../../../components/Tasks';
 
 /**
  * Patient View
@@ -31,9 +34,9 @@ class PatientViewPage extends React.Component {
    * @returns {XML}
    */
   render() {
-    var ageDifMs = Date.now() - new Date(this.props.data.birthdate).getTime();
-    var ageDate = new Date(ageDifMs);
-    let age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    var ageDifMs = Date.now() - new Date(this.props.data.birthDate).getTime();
+    var ageDate  = new Date(ageDifMs);
+    const age    = Math.abs(ageDate.getUTCFullYear() - 1970);
 
     return (
       <div className="row">
@@ -41,18 +44,17 @@ class PatientViewPage extends React.Component {
           <div className="box box-widget widget-user">
             {/*<!-- Add the bg color to the header using any of the bg-* classes -->*/}
             <div className="widget-user-header bg-aqua-active">
-              <h3 className="widget-user-username">{this.props.data.first_name} {this.props.data.last_name}</h3>
-              <h5 className="widget-user-desc"></h5>
+              <h3 className="widget-user-username">{this.props.data.firstName} {this.props.data.lastName}</h3>
             </div>
             <div className="widget-user-image">
-              <img className="img-circle" src={this.props.data.img} alt="User Avatar"/>
+              <img className="img-circle" src={this.props.data.image} alt="User Avatar"/>
             </div>
             <div className="box-footer">
               <div className="row">
                 <div className="col-sm-4 border-right">
                   <div className="description-block">
                     <h5 className="description-header">
-                      {this.props.data.gender == 'female' ? <i className="fa fa-venus"></i> :
+                      {this.props.data.gender == 'f' ? <i className="fa fa-venus"></i> :
                         <i className="fa fa-mars"></i>}
                     </h5>
                     <span className="description-text">GENDER</span>
@@ -62,6 +64,7 @@ class PatientViewPage extends React.Component {
                 {/*<!-- /.col -->*/}
                 <div className="col-sm-4 border-right">
                   <div className="description-block">
+                    {/* @todo - This creates an error - WHY?? */}
                     <h5 className="description-header">{age}</h5>
                     <span className="description-text">AGE</span>
                   </div>
@@ -99,20 +102,21 @@ class PatientViewPage extends React.Component {
                     <tbody>
                     <tr>
                       <td>Firstname</td>
-                      <td>{this.props.data.firstname}</td>
+                      <td>{this.props.data.firstName}</td>
                     </tr>
                     <tr>
                       <td>Lastname</td>
-                      <td>{this.props.data.lastname}</td>
+                      <td>{this.props.data.lastName}</td>
                     </tr>
                     <tr>
                       <td>Birthdate</td>
-                      <td>{this.props.data.birthdate}</td>
+                      <td>{this.props.data.birthDate}</td>
                     </tr>
 
                     <tr>
                       <td>Gender</td>
-                      <td>{this.props.data.gender}</td>
+                      <td>{this.props.data.gender == 'f' ? <i className="fa fa-venus"></i> :
+                        <i className="fa fa-mars"></i>}</td>
                     </tr>
                     </tbody>
                   </table>
@@ -139,12 +143,15 @@ class PatientViewPage extends React.Component {
                     </tr>
                     <tr>
                       <td>Insurance No</td>
-                      <td>{this.props.data.insurance_no}</td>
+                      <td>{this.props.data.insuranceUUID}</td>
                     </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
+            </div>
+            <div className="col-md-12">
+              <Tasks data={this.props.tasks.toJS()}/>
             </div>
           </div>
         </div>
@@ -196,16 +203,27 @@ class PatientViewPage extends React.Component {
                   <address>
                     {/*<strong>Twitter, Inc.</strong><br>*/}
                     {this.props.data.street} {this.props.data.no}<br/>
-                    {this.props.data.postalcode} {this.props.data.city}
+                    {this.props.data.zipCode} {this.props.data.city}
                   </address>
                 </div>
               </div>
             </div>
+            <div className="col-md-12">
+              <Note data={this.props.notes.toJS()} user={this.props.user} onCreate={this.onCreateHandler.bind(this)}/>
+            </div>
           </div>
         </div>
       </div>
-
     );
+  }
+
+  /**
+   * CreateHandler used to create new notes
+   *
+   * @param noteText
+   */
+  onCreateHandler(noteText) {
+    this.props.createNote(this.props.data.id, noteText);
   }
 }
 
@@ -219,6 +237,9 @@ export function mapDispatchToProps(dispatch) {
   return {
     load: (id) => {
       dispatch(fetchPatient(id));
+    },
+    createNote: (authorId, noteText) => {
+      dispatch(createNote(authorId, noteText));
     }
   };
 }
@@ -227,7 +248,11 @@ export function mapDispatchToProps(dispatch) {
  * Map state to props
  */
 const mapStateToProps = createStructuredSelector({
-  data: selectPatient(), fetched: selectFetchedState()
+  data: selectPatient(),
+  fetched: selectFetchedState(),
+  notes: selectPatientNotes(),
+  user: selectUser(),
+  tasks: selectPatientTasks()
 });
 
 // Wrap the component to inject dispatch and state into it
