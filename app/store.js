@@ -3,7 +3,7 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
-import { fromJS } from 'immutable';
+import Immutable from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
@@ -22,8 +22,19 @@ export default function configureStore(initialState = {}, history) {
   // 2. routerMiddleware: Syncs the location/URL path to the state
   const middlewares = [
     sagaMiddleware,
-    routerMiddleware(history),
-    logger(),
+    routerMiddleware(history), logger({
+      level: 'info',
+      duration: true,
+      collapsed: true,
+      diff: true,
+      stateTransformer: (state) => {
+        if (state.toJS) {
+          return state.toJS();
+        }
+
+        return state;
+      }
+    }),
     thunk
   ];
 
@@ -41,8 +52,7 @@ export default function configureStore(initialState = {}, history) {
   /* eslint-enable */
 
   const store = createStore(
-    createReducer(),
-    fromJS(initialState),
+    createReducer(), Immutable.fromJS(initialState),
     composeEnhancers(...enhancers)
   );
 
