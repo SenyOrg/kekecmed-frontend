@@ -59,7 +59,7 @@ class ControlSidebar extends React.Component {
    */
   render() {
     return (
-      <aside className="control-sidebar control-sidebar-dark">
+      <aside className="control-sidebar control-sidebar-light">
         {/* Control Sidebar */}
         {/* Create the tabs */}
         <ul className="nav nav-tabs nav-justified control-sidebar-tabs">

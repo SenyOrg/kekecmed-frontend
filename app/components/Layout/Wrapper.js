@@ -16,6 +16,14 @@ class Wrapper extends React.Component {
   }
 
   /**
+   * Component did mount
+   */
+  componentDidMount() {
+    // Add fixed class to make header and footer sticky
+    $('body').addClass('fixed');
+  }
+
+  /**
    * Render
    *
    * @returns {XML}
