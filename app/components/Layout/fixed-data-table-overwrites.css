@@ -1,0 +1,13 @@
+/*This file has some overwrites to the*/
+/*default styles of FixedDatTable*/
+
+.public_fixedDataTable_main {
+  border-color: #d3d3d3;
+  border-left: none;
+  border-right: none !important;
+  cursor: pointer;
+}
+
+.public_fixedDataTableCell_main:last-child {
+  border-color: transparent !important;
+}

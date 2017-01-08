@@ -29,4 +29,5 @@ import 'script-loader!admin-lte/dist/js/demo.js';
 /**************************************************
  *                FIXED-DATA-TABLE                *
  **************************************************/
-import 'fixed-data-table/dist/fixed-data-table.css'
+import 'fixed-data-table/dist/fixed-data-table.css';
+import 'style!css!./fixed-data-table-overwrites.css';
