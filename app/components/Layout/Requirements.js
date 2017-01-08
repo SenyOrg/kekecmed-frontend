@@ -27,7 +27,6 @@ import 'script-loader!admin-lte/dist/js/app.min.js';
 import 'script-loader!admin-lte/dist/js/demo.js';
 
 /**************************************************
- *                   AG-GRID                      *
+ *                FIXED-DATA-TABLE                *
  **************************************************/
-import 'ag-grid/dist/styles/ag-grid.css';
-import 'style!css!./ag-grid-theme.css';
+import 'fixed-data-table/dist/fixed-data-table.css'
