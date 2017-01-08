@@ -36,7 +36,10 @@ class ContentWrapper extends React.Component {
              </section>
 
              {/* Main content */}
-             <section className="content">
+             <section className="content" style={{
+               marginLeft: -15,
+               marginRight: -15
+             }}>
 
                {/* Content goes here ----> */}
                {React.Children.toArray(this.props.children)}
