@@ -44,12 +44,11 @@ function patientIndexReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_PATIENTS_PENDING:
       return state.setIn(['data', 'loading'], true)
-            .setIn(['data', 'fetched'], false)
+            .setIn(['data', 'fetched'], false).setIn(['data', 'list'], fromJS([]))
             .setIn(['data', 'error'], null);
     case FETCH_PATIENTS_FULFILLED:
       return state.setIn(['data', 'loading'], false)
-            .setIn(['data', 'fetched'], true)
-            .setIn(['data', 'list'], action.payload.data)
+            .setIn(['data', 'fetched'], true).setIn(['data', 'list'], fromJS(action.payload.data))
             .setIn(['data', 'error'], null);
     case FETCH_PATIENTS_REJECTED:
       return state.setIn(['data', 'loading'], false)

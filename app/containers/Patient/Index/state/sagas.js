@@ -13,7 +13,7 @@
 /**
  * IMPORTS
  */
-import { takeLatest } from 'redux-saga';
+import {takeLatest, delay} from 'redux-saga';
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { FETCH_PATIENTS, DELETE_PATIENTS } from './constants';
