@@ -48,7 +48,7 @@ class HeaderCell extends React.Component {
 
     // Hideable Handling
     if (this.props.hideable) {
-      hideButton = <button type="button" className="btn btn-xs btn-default" onClick={(evt) => {
+      hideButton = <button type="button" className="btn btn-xs btn-default pull-left" onClick={(evt) => {
         evt.stopPropagation();
         this.props.state.handler.hide(this.props.columnKey)
       }}><i className="fa fa-eye"></i></button>;
