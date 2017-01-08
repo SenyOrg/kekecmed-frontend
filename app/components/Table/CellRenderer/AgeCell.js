@@ -4,7 +4,7 @@
 import React from 'react';
 import {Cell} from 'fixed-data-table';
 import {age}  from '../../../utils/date';
-
+import {getCellProperties} from '../helper';
 
 /**
  * AgeCell
@@ -17,7 +17,7 @@ class AgeCell extends React.Component {
   render() {
     const {rowIndex, data, columnKey} = this.props;
 
-    return (<Cell {...this.props}>{age(data[rowIndex][columnKey])}</Cell>);
+    return (<Cell {...getCellProperties(this.props)}>{age(data[rowIndex][columnKey])}</Cell>);
   }
 }
 

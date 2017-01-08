@@ -36,8 +36,8 @@ class InfoBar extends React.Component {
         />
         <div className="pull-right">
           <HiddenColumnControl hiddenColumns={tableState.hiddenColumns} onColumnHide={tableInstance.onColumnHide}/>
-          <a className="btn btn-sm btn-default" onClick={tableInstance.onReset}><i className="fa fa-times-circle"></i>
-            Reset</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+          <a className="btn btn-sm btn-default" onClick={tableInstance.onReset}>
+            <i className="fa fa-times-circle"></i> Reset</a>&nbsp;&nbsp;|&nbsp;&nbsp;
           <a className="btn btn-sm btn-success"><i className="fa fa-refresh"></i> Refresh</a>&nbsp;&nbsp;|&nbsp;&nbsp;
           <SelectionIndicator selection={tableState.selected}/>
           &nbsp;&nbsp;|&nbsp;&nbsp;

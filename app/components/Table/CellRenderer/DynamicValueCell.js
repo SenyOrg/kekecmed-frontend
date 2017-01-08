@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {Cell} from 'fixed-data-table';
-
+import {getCellProperties} from '../helper';
 
 /**
  * Dynamic Value Cell
@@ -19,7 +19,7 @@ class DynamicValueCell extends React.Component {
   render() {
     const {valueHandler, columnKey, rowIndex, data, ...props} = this.props;
 
-    return <Cell {...props}>{valueHandler(data, rowIndex, columnKey)}</Cell>
+    return <Cell {...getCellProperties(props)}>{valueHandler(data, rowIndex, columnKey)}</Cell>
   }
 }
 

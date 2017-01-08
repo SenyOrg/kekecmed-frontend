@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {Cell} from 'fixed-data-table';
+import {getCellProperties} from '../helper';
 
 /**
  * GenderCell
@@ -19,7 +20,7 @@ class GenderCell extends React.Component {
     const icon = (this.props.data[this.props.rowIndex][this.props.columnKey] === 'm') ? <i className="fa fa-male"></i> :
       <i className="fa fa-female"></i>;
 
-    return (<Cell {...this.props}>{icon}</Cell>);
+    return (<Cell {...getCellProperties(this.props)}>{icon}</Cell>);
   }
 }
 

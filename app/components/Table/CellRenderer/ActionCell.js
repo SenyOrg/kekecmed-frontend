@@ -3,9 +3,10 @@
  */
 import React from 'react';
 import {Cell} from 'fixed-data-table';
+import {getCellProperties} from '../helper';
 
 /**
- * ActionButton
+ * ActionCell
  *
  * @author Selcuk Kekec <skekec@kekecmed.com>
  */
@@ -21,7 +22,7 @@ class ActionCell extends React.Component {
       return <TYPE {...buttons[v]['props']} />;
     });
 
-    return (<Cell {...props}>
+    return (<Cell {...getCellProperties(this.props)}>
       {React.Children.toArray(Object.values(bindedButtons))}
     </Cell>);
   }

@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {Cell} from 'fixed-data-table';
-
+import {getCellProperties} from '../helper';
 
 /**
  * HeaderCell
@@ -61,7 +61,7 @@ class HeaderCell extends React.Component {
       }
     }).bind(this);
 
-    return <Cell onClick={clickHandler} {...this.props}>
+    return <Cell {...getCellProperties(this.props)} onClick={clickHandler}>
       {this.props.title} {hideButton} {sortSymbol}
     </Cell>
   }

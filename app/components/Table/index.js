@@ -314,6 +314,7 @@ class Table extends React.Component {
           cell={<SelectionCell data={this.data} selection={this.state.selected}/>}
           width={this.selectionColumnWidth}
           fixed={true}
+          key={-100}
         />;
 
         columns = [columnInstance, ...columns];
@@ -330,7 +331,9 @@ class Table extends React.Component {
           columnKey=""
           width={this.actionColumnWidth}
           fixed={true}
-          align="center"/>
+          align="center"
+          key={-10}
+        />
 
         columns = [columnInstance, ...columns];
       }
@@ -357,25 +360,40 @@ class Table extends React.Component {
           }
         }
 
-        return <Column {...v}  />
+        return <Column {...v} key={i}/>
       });
 
       tableData = this.data;
     } else {
-      const columnInstance = <Column
-        header={<Cell></Cell>}
-        cell={<Cell>
-          <div className="alert alert-info">
-            <i className="icon fa fa-info"></i> No Data available for filter <i><b>{this.state.filter}</b></i>
-          </div>
-        </Cell>}
-        width={tableOptions.width}
-        fixed={true}
-        align="center"
-      />
-      columns              = [columnInstance];
+      if (this.props.fetched == undefined || this.props.fetched == true) {
+        const columnInstance = <Column
+          header={<Cell></Cell>}
+          cell={<Cell>
+            <i className="fa fa-info-circle fa-2x"></i> No Data available for filter '<i><b>{this.state.filter}</b></i>'
+          </Cell>}
+          width={tableOptions.width}
+          fixed={true}
+          align="center"
+          key={-5}
+        />
+        columns              = [columnInstance];
 
-      tableData = ['NORESULT'];
+        tableData = ['NORESULT'];
+      } else {
+        const columnInstance = <Column
+          header={<Cell></Cell>}
+          cell={<Cell>
+            <i className="fa fa-refresh fa-spin fa-fw fa-2x"></i> <b>Loading...</b>
+          </Cell>}
+          width={tableOptions.width}
+          fixed={true}
+          align="center"
+          key={-4}
+        />
+        columns              = [columnInstance];
+
+        tableData = ['NORESULT'];
+      }
     }
 
     return (

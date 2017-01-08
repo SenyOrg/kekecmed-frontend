@@ -27,12 +27,12 @@ class TopBar extends React.Component {
 
     return (
       <div className="box-header">
-        <button type="button" className="btn" onClick={tableInstance.onSelectAll}><i className="fa fa-check-square"></i>
-          Select all
+        <button type="button" className="btn" onClick={tableInstance.onSelectAll}>
+          <i className="fa fa-check-square"></i> Select all
         </button>
         &nbsp;
-        <button type="button" className="btn" onClick={tableInstance.onUnselectAll}><i
-          className="fa fa-minus-square"></i> Unselect all
+        <button type="button" className="btn" onClick={tableInstance.onUnselectAll}>
+          <i className="fa fa-minus-square"></i> Unselect all
         </button>
         &nbsp;
         {tableState.selected.length > 0 ?

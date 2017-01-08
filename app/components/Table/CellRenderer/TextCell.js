@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {Cell} from 'fixed-data-table';
-
+import {getCellProperties} from '../helper';
 
 /**
  * TextCell
@@ -22,7 +22,7 @@ class TextCell extends React.Component {
   render() {
     const {rowIndex, data, columnKey} = this.props;
 
-    return (<Cell {...this.props}>{data[rowIndex][columnKey]}</Cell>);
+    return (<Cell {...getCellProperties(this.props)}>{data[rowIndex][columnKey]}</Cell>);
   }
 }
 

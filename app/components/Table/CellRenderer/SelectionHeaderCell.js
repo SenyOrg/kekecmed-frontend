@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {Cell} from 'fixed-data-table';
+import {getCellProperties} from '../helper';
 
 /**
  * SelectionHeaderCell
@@ -30,7 +31,7 @@ class SelectionHeaderCell extends React.Component {
 
     const clickHandler = (allSelected) ? unselectHandler : selectHandler;
 
-    return <Cell {...this.props} onClick={clickHandler}>{content}</Cell>;
+    return <Cell {...getCellProperties(this.props)} onClick={clickHandler}>{content}</Cell>;
   }
 }
 
